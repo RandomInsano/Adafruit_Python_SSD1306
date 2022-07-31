@@ -109,13 +109,13 @@ while True:
 
     # Shell scripts for system monitoring from here : https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
     cmd = "hostname -I | cut -d\' \' -f1"
-    IP = subprocess.check_output(cmd, shell = True )
+    IP = subprocess.check_output(cmd, shell = True, encoding="utf-8")
     cmd = "top -bn1 | grep load | awk '{printf \"CPU Load: %.2f\", $(NF-2)}'"
-    CPU = subprocess.check_output(cmd, shell = True )
+    CPU = subprocess.check_output(cmd, shell = True, encoding="utf-8")
     cmd = "free -m | awk 'NR==2{printf \"Mem: %s/%sMB %.2f%%\", $3,$2,$3*100/$2 }'"
-    MemUsage = subprocess.check_output(cmd, shell = True )
+    MemUsage = subprocess.check_output(cmd, shell = True, encoding="utf-8")
     cmd = "df -h | awk '$NF==\"/\"{printf \"Disk: %d/%dGB %s\", $3,$2,$5}'"
-    Disk = subprocess.check_output(cmd, shell = True )
+    Disk = subprocess.check_output(cmd, shell = True, encoding="utf-8")
 
     # Write two lines of text.
 
